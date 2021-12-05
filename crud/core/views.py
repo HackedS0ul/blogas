@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, DeleteView,UpdateView
 from .models import Post
+from .forms import CreatePostForm
 
 
 class PostList(ListView):
@@ -11,13 +12,7 @@ class PostList(ListView):
 
 class PostCreate(CreateView):
     model = Post
-    fields = [
-        'title',
-        'short_desc',
-        'description',
-        'author',
-        'status',
-    ]
+    form_class = CreatePostForm
     template_name = 'create.html'
     success_url = '/'
 

@@ -7,6 +7,8 @@ POST_STATUS = (
     ('INACTIVE', ('Inactive')),
     ('IN-REVIEW', ('In-Review')),
 )
+
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     short_desc = models.CharField(max_length=250)

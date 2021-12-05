@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div id="addEmployeeModal">
+<div>
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form method="post">
@@ -18,12 +18,14 @@
 						{{form.short_desc|as_crispy_field}}
 					</div>
 					<div class="form-group">
+						{{form.description|as_crispy_field}}
+					</div>
+					<div class="form-group">
 						{{form.author|as_crispy_field}}
 					</div>
 					<div class="form-group">
 						{{form.status|as_crispy_field}}
 					</div>
-
 				</div>
 				<div class="modal-footer">
 					<a href="/" class="btn btn-info">Cancel</a>
