@@ -28,3 +28,7 @@ class PostUpdate(UpdateView):
     ]
     template_name = 'update.html'
     success_url = '/'
+
+
+def user_register(request):
+    return render(request, 'register.html')
