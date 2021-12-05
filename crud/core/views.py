@@ -20,3 +20,16 @@ class PostCreate(CreateView):
     ]
     template_name = 'create.html'
     success_url = '/'
+
+
+class PostUpdate(UpdateView):
+    model = Post
+    fields = [
+        'title',
+        'short_desc',
+        'description',
+        'author',
+        'status',
+    ]
+    template_name = 'update.html'
+    success_url = '/'
