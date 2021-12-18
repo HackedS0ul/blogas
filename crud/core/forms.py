@@ -3,6 +3,7 @@ from django.forms.fields import EmailField, CharField
 from .models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
 
 
 class CreatePostForm(ModelForm):
@@ -10,13 +11,26 @@ class CreatePostForm(ModelForm):
 
     class Meta:
         model = Post
-        fields = [
-            'title',
-            'short_desc',
-            'description',
-            'author',
-            'status',
-        ]
+        fields ='__all__'
+
+    def clean(self):
+        super(CreatePostForm, self).clean()
+        title = self.cleaned_data.get('title')
+
+        if len(title) < 5:
+            self.errors['title'] = self.error_class([
+                'Minimum 5 chars required'
+            ])
+        if len(title) > 6:
+            self.errors['title'] = self.error_class([
+                'Max 6 chars '
+            ])
+
+        return self.cleaned_data
+
+
+
+
 
 
 class RegisterForm(UserCreationForm):

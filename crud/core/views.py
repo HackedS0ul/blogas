@@ -6,14 +6,21 @@ from .models import Post
 from .forms import CreatePostForm
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm
+from django.core.paginator import Paginator
+
+
 
 
 class PostList(ListView):
     model = Post
     template_name = 'index.html'
-    #Old methods
-    #extra_context = {'items': Post.objects.count()}
-    #Updated methods
+    paginate_by = 4
+
+    # Old methods
+    # a= Post.objects.all()
+    # context = { 'items': a }
+    # extra_context = {'items': 'Post.objects.count()'}
+    # Updated methods
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['items'] = Post.objects.count()
