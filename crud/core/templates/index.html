@@ -2,7 +2,12 @@
 {% block content %}
 {% include 'navigation.html '%}
 {% if user.is_authenticated == False %}
-<div><a href="login">Please login </a></div>
+<p style="text-align:center;  font-size:16px;">
+	<strong>You are not authenticated</strong>
+</p>
+	<a href="login" style="color:red; font-size:16px;">
+		<p style="text-align:center; font-weight:bold;">Please login</p>
+	</a>
 {% else %}
 <div class="container-xl">
 	<div class="table-responsive">
@@ -60,6 +65,7 @@
 				</tbody>
 			</table>
 			<div class="clearfix">
+				<!-- NEW -->
 				<div class="hint-text">Showing <b>{{page_obj.object_list.count}}</b> out of <b>{{page_obj.paginator.count}}</b> entries</div>
 
 				{% if is_paginated %}
