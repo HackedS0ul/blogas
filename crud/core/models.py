@@ -1,5 +1,5 @@
 from django.db import models
-#NEW
+# NEW
 from django.contrib.auth.models import User
 
 POST_STATUS = (
@@ -19,3 +19,15 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Profile(models.Model):
+    user_profile = models.ForeignKey(User, on_delete=models.CASCADE)
+    address = models.CharField(max_length=200)
+    education = models.CharField(max_length=200)
+    country = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    phone_number = models.CharField(max_length=11)
+
+    def __str__(self):
+        return str(self.user_profile)

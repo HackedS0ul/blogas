@@ -1,6 +1,6 @@
 from django.forms import forms, ModelForm, PasswordInput
 from django.forms.fields import EmailField, CharField
-from .models import Post
+from .models import Post, Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
@@ -11,7 +11,7 @@ class CreatePostForm(ModelForm):
 
     class Meta:
         model = Post
-        fields ='__all__'
+        fields = '__all__'
 
     def clean(self):
         super(CreatePostForm, self).clean()
@@ -29,10 +29,6 @@ class CreatePostForm(ModelForm):
         return self.cleaned_data
 
 
-
-
-
-
 class RegisterForm(UserCreationForm):
     username = CharField(help_text=None)
     email = EmailField(help_text=None)
@@ -42,3 +38,22 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = User
+        fields = '__all__'
+
+
+class ProfileUpdateForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = [
+            'user_profile',
+            'address',
+            'education',
+            'country',
+            'state',
+            'phone_number',
+        ]

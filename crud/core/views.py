@@ -2,13 +2,11 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
-from .models import Post
-from .forms import CreatePostForm
+from .models import Post, Profile
+from .forms import CreatePostForm, ProfileUpdateForm
 from django.contrib.auth import authenticate, login, logout
-from .forms import RegisterForm
+from .forms import RegisterForm, ProfileForm
 from django.core.paginator import Paginator
-
-
 
 
 class PostList(ListView):
@@ -83,3 +81,10 @@ def user_login(request):
 def log_out(request):
     logout(request)
     return redirect('login')
+
+
+class ProfileUpdate(UpdateView):
+    model = Profile
+    form_class = ProfileUpdateForm
+    template_name = 'profile.html'
+    success_url = '/'
